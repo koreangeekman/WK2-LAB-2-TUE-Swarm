@@ -68,6 +68,8 @@ const people = [{
 }
 ]
 
+let timeLeft = 8; // hrs till dawn
+
 // function initDraw() {
 //   people.forEach(person => {
 //     document.getElementById(person.location).innerText += person.picture;
@@ -94,6 +96,7 @@ const people = [{
 // basic draw to html field, add per person
 function draw() {
   people.forEach(person => document.getElementById(person.location).innerText += person.picture);
+  document.getElementById('hrs').innerText = timeLeft;
 }
 // initial draw
 draw()
@@ -140,7 +143,16 @@ function attack(location) {
     reset();
     return
   }
-  redraw(); // doubles the redraw if win condition
+
+  timeLeft--;
+
+  if (!timeLeft) {
+    window.alert('You Lose!');
+    reset();
+    return
+  }
+
+  redraw();
 }
 
 // check win condition - returns boolean
@@ -159,5 +171,6 @@ function redraw() {
 
 function reset() {
   newCitizens();
+  timeLeft = 8;
   redraw();
 }
