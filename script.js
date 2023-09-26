@@ -105,6 +105,10 @@ function clearLocations() {
   locations.forEach(location => document.getElementById(location).innerText = "");
 }
 
+function newCitizens() {
+  people.forEach(person => person.picture = citizens[arrayRNG(citizens)])
+}
+
 function arrayRNG(array) {
   if (array) {
     let rng = Math.floor(Math.random() * array.length)
@@ -117,8 +121,6 @@ function arrayRNG(array) {
 // arrayRNG(locations)
 // arrayRNG(people)
 
-
-
 function attack(location) {
   console.log(location);
 
@@ -128,30 +130,28 @@ function attack(location) {
     }
   });
 
-  clearLocations();
-  relocate();
-  draw();
-
-  checkWin();
+  if (checkWin()) {
+    window.alert('You Win!')
+    reset();
+    return
+  }
+  redraw(); // doubles the redraw if win condition
 }
 
 function checkWin() {
   let normies = people.filter(person => person.picture != '🦇');
-  // console.log(normies);
-  if (!normies.length) {
-    window.alert('You Win!')
-    reset();
-  }
-
+  if (!normies.length) { return true; }
 }
 
-function newCitizens() {
-  people.forEach(person => person.picture = citizens[arrayRNG(citizens)])
+// empty draw points and redraw after position changes
+function redraw() {
+  clearLocations();
+  relocate();
+  draw();
+  console.log('redrawn')
 }
 
 function reset() {
-  clearLocations();
   newCitizens();
-  relocate()
-  draw();
+  redraw();
 }
