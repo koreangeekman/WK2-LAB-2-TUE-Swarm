@@ -1,3 +1,7 @@
+const citizens = [
+  '🤵', '🙆‍♀️', '👷', '🤴', '🕵️', '👩‍🍳', '💂', '🧜‍♂️', '🏐', '👩‍⚕️', '🦹'
+]
+
 const locations = [
   '🏤', '🏥', '🏭', '🏢', '🏣'
 ]
@@ -126,5 +130,28 @@ function attack(location) {
 
   clearLocations();
   relocate();
+  draw();
+
+  checkWin();
+}
+
+function checkWin() {
+  let normies = people.filter(person => person.picture != '🦇');
+  // console.log(normies);
+  if (!normies.length) {
+    window.alert('You Win!')
+    reset();
+  }
+
+}
+
+function newCitizens() {
+  people.forEach(person => person.picture = citizens[arrayRNG(citizens)])
+}
+
+function reset() {
+  clearLocations();
+  newCitizens();
+  relocate()
   draw();
 }
