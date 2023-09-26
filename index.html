@@ -11,22 +11,73 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="//cdn.materialdesignicons.com/5.4.55/css/materialdesignicons.min.css">
 
   <link rel="stylesheet" href="style.css">
 
+  <script id="debug-script" src="https://cdn.jsdelivr.net/gh/MickShannahan/style-debug@latest/debug.min.js"
+    defer></script>
 </head>
 
-<body>
-  <header>
-    <!-- place navbar here -->
-  </header>
-  <main>
+<body class="debug">
 
-  </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
+  <div class="container-fluid">
+
+    <header class="row p-3">
+      <div class="col-12">
+        <p class="title creepster fs-1 mb-0">Immortal Swarm</p>
+      </div>
+    </header>
+
+    <main class="row d-flex justify-content-evenly p-2">
+      <div class="col-5 col-md-3 btn card p-3 m-2 text-center" onclick="attack('Bank')" id="Bank">
+        <p class="location fs-1">
+          🏤
+        </p>
+        <p class="fs-3">Bank</p>
+        <p class="creatures fs-4">🤵🙆‍♀️👷🤴🕵️👩‍🍳💂🧜‍♂️🏐👩‍⚕️🦹</p>
+      </div>
+      <div class="col-5 col-md-3 btn card p-3 m-2 fs-1 text-center" onclick="attack('Hospital')" id="Hospital">
+        <p class="location fs-1">
+          🏥
+        </p>
+        <p class="fs-3">Hospital</p>
+        <p class="creatures fs-4">🤵🙆‍♀️👷🤴🕵️👩‍🍳💂🧜‍♂️🏐👩‍⚕️🦹</p>
+      </div>
+      <div class="col-5 col-md-3 btn card p-3 m-2 fs-1 text-center" onclick="attack('Factory')" id="Factory">
+        <p class="location fs-1">
+          🏭
+        </p>
+        <p class="fs-3">Factory</p>
+        <p class="creatures fs-4">🤵🙆‍♀️👷🤴🕵️👩‍🍳💂🧜‍♂️🏐👩‍⚕️🦹</p>
+      </div>
+      <div class="col-5 col-md-3 btn card p-3 m-2 fs-1 text-center" onclick="attack('Office')" id="Office">
+        <p class="location fs-1">
+          🏢
+        </p>
+        <p class="fs-3">Office</p>
+        <p class="creatures fs-4">🤵🙆‍♀️👷🤴🕵️👩‍🍳💂🧜‍♂️🏐👩‍⚕️🦹</p>
+      </div>
+      <div class="col-5 col-md-3 btn card p-3 m-2 fs-1 text-center" onclick="attack('Post Office')" id="Post Office">
+        <p class="location fs-1">
+          🏣
+        </p>
+        <p class="fs-3">Post Office</p>
+        <p class="creatures fs-4">🤵🙆‍♀️👷🤴🕵️👩‍🍳💂🧜‍♂️🏐👩‍⚕️🦹</p>
+      </div>
+    </main>
+
+    <footer class="row p-3">
+      <div class="col-12 d-flex justify-content-center">
+        <p class="beware creepster fs-1 mb-0">BEWARE: The Hunter is near</p>
+      </div>
+    </footer>
+
+  </div>
 
   <script src="script.js"></script>
   <!-- Bootstrap JavaScript Libraries -->

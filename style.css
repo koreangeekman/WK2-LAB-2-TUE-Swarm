@@ -1,3 +1,31 @@
 body {
-  background-color: #123456;
+  background-image: url(https://images.unsplash.com/photo-1561487767-1f32d174cce0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+  object-fit: fill;
+  background-position: center;
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+.creepster {
+  font-family: 'Creepster', cursive;
+  text-shadow:
+    2px 2px orange,
+    5px 5px 2px black,
+    -1px -1px 3px black;
+}
+
+.card {
+  background-color: #123456b0;
+  border: 2px solid green;
+  border-radius: 10px;
+}
+
+
+@media(max-width: 768px) {
+  .title {
+    text-align: center;
+  }
 }
