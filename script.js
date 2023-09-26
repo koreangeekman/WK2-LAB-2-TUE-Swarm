@@ -91,24 +91,29 @@ const people = [{
 // }
 // position()
 
+// basic draw to html field, add per person
 function draw() {
   people.forEach(person => document.getElementById(person.location).innerText += person.picture);
 }
 // initial draw
 draw()
 
-function relocate() {
-  people.forEach(person => person.location = locations[arrayRNG(locations)]);
-}
-
+// empties html field
 function clearLocations() {
   locations.forEach(location => document.getElementById(location).innerText = "");
 }
 
+// randomizes location, per person
+function relocate() {
+  people.forEach(person => person.location = locations[arrayRNG(locations)]);
+}
+
+// redefine citizen pictures at random
 function newCitizens() {
   people.forEach(person => person.picture = citizens[arrayRNG(citizens)])
 }
 
+// RNG function for arrays - time to re- aRayNG :D
 function arrayRNG(array) {
   if (array) {
     let rng = Math.floor(Math.random() * array.length)
@@ -138,6 +143,7 @@ function attack(location) {
   redraw(); // doubles the redraw if win condition
 }
 
+// check win condition - returns boolean
 function checkWin() {
   let normies = people.filter(person => person.picture != '🦇');
   if (!normies.length) { return true; }
