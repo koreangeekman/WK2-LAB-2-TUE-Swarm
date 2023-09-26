@@ -1,5 +1,3 @@
-console.log('test ahoy')
-
 const locations = [
   '🏤', '🏥', '🏭', '🏢', '🏣'
 ]
@@ -66,7 +64,6 @@ const people = [{
 }
 ]
 
-
 // function initDraw() {
 //   people.forEach(person => {
 //     document.getElementById(person.location).innerText += person.picture;
@@ -75,22 +72,59 @@ const people = [{
 // }
 // initDraw()
 
-let filteredArray = [];
+// function position() {
+//   locations.forEach(location => {
+//     console.log(location)
+
+//     let filteredPeople = people.filter(person => person.location == location)
+//     // console.log(filteredPeople)
+
+//     let pictures = filteredPeople.map(person => person.picture)
+//     // console.log(pictures)
+
+//     document.getElementById(location).innerText = pictures;
+//   })
+// }
+// position()
 
 function draw() {
-  people.forEach(person => {
+  people.forEach(person => document.getElementById(person.location).innerText += person.picture);
+}
+// initial draw
+draw()
 
-    document.getElementById(person.location).innerText += person.picture;
-    console.log(people.picture)
-  })
+function relocate() {
+  people.forEach(person => person.location = locations[arrayRNG(locations)]);
 }
 
-initDraw()
+function clearLocations() {
+  locations.forEach(location => document.getElementById(location).innerText = "");
+}
+
+function arrayRNG(array) {
+  if (array) {
+    let rng = Math.floor(Math.random() * array.length)
+    // console.log(array.length);
+    // console.log('rng', rng)
+    return rng;
+  }
+}
+// calling function tests
+// arrayRNG(locations)
+// arrayRNG(people)
+
 
 
 function attack(location) {
   console.log(location);
-}
 
-// prompting for user input - save response to a variable
-const promptedMsg = window.prompt("prompt message")
+  people.forEach(person => {
+    if (person.location == location && person.picture != '🦇') {
+      person.picture = '🦇';
+    }
+  });
+
+  clearLocations();
+  relocate();
+  draw();
+}
