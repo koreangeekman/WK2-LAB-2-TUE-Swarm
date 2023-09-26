@@ -66,3 +66,31 @@ const people = [{
 }
 ]
 
+
+// function initDraw() {
+//   people.forEach(person => {
+//     document.getElementById(person.location).innerText += person.picture;
+//     console.log(people.picture)
+//   })
+// }
+// initDraw()
+
+let filteredArray = [];
+
+function draw() {
+  people.forEach(person => {
+
+    document.getElementById(person.location).innerText += person.picture;
+    console.log(people.picture)
+  })
+}
+
+initDraw()
+
+
+function attack(location) {
+  console.log(location);
+}
+
+// prompting for user input - save response to a variable
+const promptedMsg = window.prompt("prompt message")
