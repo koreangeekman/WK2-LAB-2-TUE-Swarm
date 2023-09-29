@@ -72,8 +72,9 @@ let timeLeft = 8; // hrs till dawn
 let hunter = "";
 
 function trainHunter() {
-  hunter = people[arrayRNG(people)].name;
-  console.log(hunter);
+  let hunterObj = people[arrayRNG(people)];
+  console.log(hunterObj);
+  hunter = hunterObj.name;
 }
 //initial hunter selection
 trainHunter();
@@ -83,8 +84,6 @@ function draw() {
   people.forEach(person => document.getElementById(person.location).innerText += person.picture);
   document.getElementById('hrs').innerText = timeLeft;
 }
-// initial draw
-draw();
 
 // empties html field
 function clearLocations() {
@@ -116,8 +115,9 @@ function arrayRNG(array) {
 
 function attack(location) {
   console.log(location);
+  timeLeft--;
 
-  if (winCondition()) {
+  if (winCondition(location)) {
     console.log("You've converted everyone!")
     window.alert('You Win!')
     reset();
@@ -125,43 +125,44 @@ function attack(location) {
   }
 
   if (loseCondition(location)) {
-    console.log('Tbe vampire hunter found you!')
     window.alert('You Lose!');
     reset();
     return
   }
 
   if (!winCondition() && !loseCondition()) {
-    console.log('!win !lose trigger')
+    console.log('!win !lose trigger - continues game')
     bite(location)
-
-    timeLeft--;
-    if (!timeLeft) {
-      loseCondition(location);
-      return
-    } else {
-      redraw();
-    }
+    redraw();
   }
 }
 
 function hunterCheck(location) {
-  let hunterPresent = (people.filter(person => person.location == location && person.name == hunter))
-  console.log(hunterPresent)
+  let hunterPresent = (people.find(person => person.location == location && person.name == hunter))
+  if (hunterPresent) {
+    console.log(`${hunterPresent.name}, the Vampire Hunter, is here!`);
+    return (hunterPresent.name == hunter)
+  }
 }
 
-// check win condition - if only 1 remains - returns boolean
-function winCondition() {
+// check win condition - if only 1 remains and is the hunter - returns true
+function winCondition(location) {
   let normies = people.filter(person => person.picture != '🦇');
-  if (normies.length <= 1) {
-    console.log('win condition trigger')
+  if (normies.length <= 1 && hunterCheck(location)) {
+    // console.log('win condition trigger')
     return true;
   }
 }
 
 function loseCondition(location) {
-  if (hunterCheck(location) && !winCondition()) {
-    console.log('lose condition trigger')
+  if (hunterCheck(location) || timeLeft <= 0) {
+    // console.log('lose condition trigger')
+    if (timeLeft <= 0) {
+      // console.log('lose condition trigger - out of time')
+      return true
+    }
+    // console.log('lose condition trigger - vampire hunter on location')
+    console.log('The vampire hunter got you!')
     return true
   }
 }
@@ -171,11 +172,12 @@ function bite(location) {
     if (person.location == location && person.picture != '🦇') {
       person.picture = '🦇';
       console.log('bitten')
+      return
     }
   });
 }
 
-// empty draw points and redraw after position changes
+// empty draw points and redraw after position changes due to additive functions
 function redraw() {
   clearLocations();
   relocate();
@@ -191,6 +193,8 @@ function reset() {
 }
 
 
+// initial draw
+draw();
 
 // function initDraw() {
 //   people.forEach(person => {
